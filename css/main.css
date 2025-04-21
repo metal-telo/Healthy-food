@@ -71,3 +71,9 @@ footer .flex {
 footer div:nth-child(2) {
   color: rgba(0, 0, 0, 0.7);
 }
+
+/*карты*/
+.delivery-map {
+  width: 100%;
+  height: 400px;
+}
