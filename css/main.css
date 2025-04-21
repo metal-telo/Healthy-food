@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat;
+  font-weight: 600;
+}
+header {
+  margin: 0 0 2%;
+  padding: 2% 5%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  box-shadow: 2px 2px 10px#64d370;
+}
+a {
+  color: #64d370;
+  cursor: pointer;
+}
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.small {
+  font-size: small;
+}
+.big {
+  font-size: large;
+}
+header a {
+  color: black;
+  text-decoration: none;
+}
+header .flex {
+  width: 60%;
+}
+header div:nth-child(3) {
+  text-align: right;
+}
+header a:hover {
+  color: #64d370;
+  transition: 0.3s;
+}
+footer {
+  margin: 2% auto 0;
+  padding: 2% 5%;
+  text-align: left;
+  box-shadow: -2px -2px 10px#64d370;
+}
