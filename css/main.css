@@ -4,6 +4,11 @@ body {
   font-family: Montserrat;
   font-weight: 600;
 }
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
 header {
   margin: 0 0 2%;
   padding: 2% 5%;
@@ -74,6 +79,6 @@ footer div:nth-child(2) {
 
 /*карты*/
 .delivery-map {
-  width: 100%;
+  width: 50%;
   height: 400px;
 }

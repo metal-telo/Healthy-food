@@ -12,10 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<785274dd-d9ba-449c-9f05-1d68681f3ca1>"
-      type="text/javascript"
-    ></script>
   </head>
   <body>
     <header>
@@ -37,14 +33,17 @@
       <section></section>
       <section></section>
       <section class="flex">
-        <div id="delivery-map" class="delivery-map"></div>
+        <div id="delivery-map" class="delivery-map">
+          <script
+            type="text/javascript"
+            charset="utf-8"
+            async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A135bcc8be98a7454dee900eb5f08d531e2c37e235cf873a8874399c93936de60&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"
+          ></script>
+        </div>
         <div>
-          <h3>Калькулятор доставки</h3>
-          <p>Укажите адрес доставки на карте для расчета стоимости</p>
-          <div
-            id="delivery-result"
-            style="margin-top: 20px; font-weight: bold"
-          ></div>
+          <h3>Карта доставки</h3>
+          <p>Рассчитайте стоимость доставки</p>
         </div>
       </section>
       <section></section>
@@ -81,114 +80,5 @@
         </p>
       </div>
     </footer>
-    <script type="text/javascript">
-      ymaps.ready(init);
-
-      function init() {
-        // Параметры доставки
-        var DELIVERY_TARIFF = 20, // руб/км
-          MINIMUM_COST = 500, // минимальная стоимость доставки
-          RESTAURANT_COORDS = [55.84842295, 37.50554228], // координаты ресторана
-          RESTAURANT_ADDRESS = "Москва, Кронштадтский бульвар, 37Б";
-
-        // Инициализация карты
-        var myMap = new ymaps.Map("delivery-map", {
-          center: RESTAURANT_COORDS, // Центрируем карту на ресторане
-          zoom: 14, // Более близкий zoom
-          controls: [],
-        });
-
-        // Добавляем метку ресторана
-        var restaurantPlacemark = new ymaps.Placemark(
-          RESTAURANT_COORDS,
-          {
-            hintContent: RESTAURANT_ADDRESS,
-            balloonContent: "Наш ресторан",
-          },
-          {
-            preset: "islands#redDotIcon",
-          }
-        );
-        myMap.geoObjects.add(restaurantPlacemark);
-
-        // Панель маршрутизации
-        var routePanelControl = new ymaps.control.RoutePanel({
-          options: {
-            showHeader: true,
-            title: "Расчёт доставки",
-            visible: true,
-          },
-        });
-
-        // Настройки панели
-        routePanelControl.routePanel.state.set({
-          fromEnabled: false,
-          from: RESTAURANT_ADDRESS,
-          to: "", // Пустое поле для ввода адреса клиента
-        });
-
-        routePanelControl.routePanel.options.set({
-          types: { auto: true },
-          avoidTrafficJams: true,
-        });
-
-        myMap.controls.add(routePanelControl);
-
-        // Обработка маршрута
-        routePanelControl.routePanel.getRouteAsync().then(function (route) {
-          route.model.events.add(
-            ["requestsuccess", "requestfail"],
-            function (e) {
-              var deliveryResult = document.getElementById("delivery-result");
-
-              if (e.type == "requestfail") {
-                deliveryResult.innerHTML =
-                  "<p style='color:red'>Не удалось построить маршрут. Укажите корректный адрес доставки.</p>";
-                return;
-              }
-
-              var activeRoute = route.getActiveRoute();
-              if (!activeRoute) {
-                deliveryResult.innerHTML =
-                  "<p style='color:orange'>Укажите адрес доставки на карте</p>";
-                return;
-              }
-
-              var length = activeRoute.properties.get("distance");
-              if (!length) {
-                deliveryResult.innerHTML =
-                  "<p style='color:red'>Не удалось определить расстояние.</p>";
-                return;
-              }
-
-              var distanceKm = Math.round(length.value / 1000),
-                price = calculate(distanceKm),
-                distanceText = length.text;
-
-              deliveryResult.innerHTML =
-                "<p>От: " +
-                RESTAURANT_ADDRESS +
-                "</p>" +
-                "<p>Расстояние: " +
-                distanceText +
-                "</p>" +
-                "<p class='price'>Стоимость доставки: " +
-                price +
-                " руб.</p>";
-
-              // Стиль для цены
-              var style = document.createElement("style");
-              style.textContent =
-                ".price { color: #e74c3c; font-weight: bold; font-size: 1.2em; }";
-              document.head.appendChild(style);
-            }
-          );
-        });
-
-        function calculate(routeLength) {
-          return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-        }
-      }
-    </script>
   </body>
 </html>
