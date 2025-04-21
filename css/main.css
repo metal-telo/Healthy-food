@@ -21,12 +21,28 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .small {
   font-size: small;
 }
 .big {
   font-size: large;
+}
+
+button {
+  background-color: #64d370;
+  font-family: Montserrat;
+  color: white;
+  padding: 4% 8%;
+  margin-right: 2%;
+  text-wrap: nowrap;
+  font-weight: 600;
+  border: none;
+  border-radius: 15px;
+}
+.btnimg {
+  width: 100%;
 }
 header a {
   color: black;
@@ -35,7 +51,8 @@ header a {
 header .flex {
   width: 60%;
 }
-header div:nth-child(3) {
+header div:nth-child(3),
+footer .big {
   text-align: right;
 }
 header a:hover {
@@ -47,4 +64,10 @@ footer {
   padding: 2% 5%;
   text-align: left;
   box-shadow: -2px -2px 10px#64d370;
+}
+footer .flex {
+  width: auto;
+}
+footer div:nth-child(2) {
+  color: rgba(0, 0, 0, 0.7);
 }
