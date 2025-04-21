@@ -32,7 +32,7 @@
     <main>
       <section></section>
       <section></section>
-      <section class="flex">
+      <section class="flex" id="map">
         <div id="delivery-map" class="delivery-map">
           <script
             type="text/javascript"
@@ -41,9 +41,20 @@
             src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A135bcc8be98a7454dee900eb5f08d531e2c37e235cf873a8874399c93936de60&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"
           ></script>
         </div>
-        <div>
-          <h3>Карта доставки</h3>
-          <p>Рассчитайте стоимость доставки</p>
+        <div class="delivery-map">
+          <h3>Предварительный расёт стоимости доставки</h3>
+          <label>Куда потребуется доставить?</label><br />
+          <select>
+            <option>Москва (в пределах садового кольца)</option>
+            <option>Москва (в пределах ТТК)</option>
+            <option>Москва (в пределах МКАД)</option>
+            <option>МО (в пределах ЦКАД)</option></select
+          ><br />
+          <input type="text" placeholder="Введите адресс" /><button
+            type="submit"
+          >
+            Рассчитать
+          </button>
         </div>
       </section>
       <section></section>

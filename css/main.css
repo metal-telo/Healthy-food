@@ -39,12 +39,13 @@ button {
   background-color: #64d370;
   font-family: Montserrat;
   color: white;
-  padding: 4% 8%;
+  padding: 2% 4%;
   margin-right: 2%;
   text-wrap: nowrap;
   font-weight: 600;
   border: none;
   border-radius: 15px;
+  cursor: pointer;
 }
 .btnimg {
   width: 100%;
@@ -76,9 +77,18 @@ footer .flex {
 footer div:nth-child(2) {
   color: rgba(0, 0, 0, 0.7);
 }
-
+footer button {
+  padding: 4% 8%;
+}
 /*карты*/
 .delivery-map {
   width: 50%;
   height: 400px;
+}
+
+#map {
+  background-color: rgba(100, 211, 112, 0.3);
+  padding: 2%;
+  gap: 2%;
+  border-radius: 30px;
 }
