@@ -38,7 +38,7 @@
                 Сервис правильного<br />
                 питания
               </h1>
-              <p>Сделай свой выбор!</p>
+              <p class="green">Сделай свой выбор!</p>
               <div class="hero-buttons">
                 <button class="button primary">Подобрать питание</button>
                 <button class="button secondary">Получить консультацию</button>
@@ -106,19 +106,25 @@
           ></script>
         </div>
         <div class="delivery-map">
-          <h3>Предварительный расёт стоимости доставки</h3>
-          <label>Куда потребуется доставить?</label><br />
-          <select>
-            <option>Москва (в пределах садового кольца)</option>
-            <option>Москва (в пределах ТТК)</option>
-            <option>Москва (в пределах МКАД)</option>
-            <option>МО (в пределах ЦКАД)</option></select
-          ><br />
-          <input type="text" placeholder="Введите адресс" /><button
-            type="submit"
-          >
-            Рассчитать
-          </button>
+          <h2>Карта доставки</h2>
+          <form class="adres">
+            <label>Куда потребуется доставить?</label>
+            <p>
+              <select required>
+                <option>Москва (в пределах садового кольца)</option>
+                <option>Москва (в пределах ТТК)</option>
+                <option>Москва (в пределах МКАД)</option>
+                <option>МО (в пределах ЦКАД)</option>
+              </select>
+            </p>
+            <div>
+              <input type="text" placeholder="Введите адресс" required /><button
+                type="submit"
+              >
+                Рассчитать
+              </button>
+            </div>
+          </form>
         </div>
       </section>
       <section></section>

@@ -8,7 +8,7 @@ body {
 h1,
 h2 {
   color: black;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 p {
@@ -57,6 +57,11 @@ button {
   border-radius: 15px;
   cursor: pointer;
 }
+
+button:hover {
+  background-color: #00c614;
+}
+
 .btnimg {
   width: 100%;
 }
@@ -97,6 +102,10 @@ footer button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.green {
+  margin-top: 0;
 }
 
 .hero-text {
@@ -143,9 +152,8 @@ footer button {
 }
 
 .hero-buttons .button.primary:hover {
-  background-color: #076d11;
-  color: white;
-  border: 3px solid #076d11;
+  background-color: #00c614;
+  border: 3px solid #00c614;
 }
 
 .hero-buttons .button.secondary {
@@ -155,8 +163,8 @@ footer button {
 }
 
 .hero-buttons .button.secondary:hover {
-  color: #076d11;
-  border: 3px solid #076d11;
+  color: #00c614;
+  border: 3px solid #00c614;
 }
 
 /* Стили для секции Benefits */
@@ -202,14 +210,15 @@ footer button {
   color: rgba(0, 0, 0, 0.7);
 }
 
-.benefits-text h2 {
+h2 {
   font-weight: bold; /* Делаем текст жирным */
   font-size: 40px;
+  margin-bottom: 20px;
 }
 
 /*карты*/
 .delivery-map {
-  width: 50%;
+  width: 70%;
   height: 400px;
 }
 
@@ -219,4 +228,44 @@ footer button {
   padding: 2%;
   gap: 2%;
   border-radius: 30px;
+}
+
+#map h2 {
+  margin-bottom: 8px;
+}
+
+.adres p {
+  margin: 2% 0;
+}
+
+.adres div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+}
+
+.adres select,
+.adres input {
+  width: 100%;
+  border: none;
+  background-color: white;
+  padding: 2%;
+  border-radius: 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+select,
+input {
+  font-family: Montserrat;
+  font-weight: 600;
+}
+
+.adres button {
+  margin: 0;
+  border-radius: 10px;
 }
