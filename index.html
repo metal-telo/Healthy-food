@@ -95,7 +95,7 @@
         </div>
       </section>
       <section></section>
-      <section>
+      <section id="menu">
         <div class="container">
           <h2>Наше меню</h2>
           <p class="green">Калорийность</p>
@@ -104,7 +104,7 @@
               <!-- Калорийность будет добавлена через JS -->
             </div>
           </div>
-
+          <p class="green">Продолжительность</p>
           <div class="options-container" id="durationOptions">
             <!-- Все варианты продолжительности будут добавлены через JS -->
           </div>
@@ -124,22 +124,32 @@
               <div class="total-numbers">
                 <div class="total-item">
                   <div class="total-value" id="totalKcal">0 ккал</div>
-                  <div class="total-label">Калорийность</div>
                 </div>
                 <div class="total-item">
-                  <div class="total-value" id="totalProtein">0</div>
-                  <div class="total-label">Белки</div>
+                  <div><img src="img/Group.svg" /></div>
+                  <div>
+                    <div class="total-value" id="totalProtein">0</div>
+                    <div class="total-value">Белки</div>
+                  </div>
                 </div>
                 <div class="total-item">
-                  <div class="total-value" id="totalFat">0</div>
-                  <div class="total-label">Жиры</div>
+                  <div><img src="img/Group (1).svg" /></div>
+                  <div>
+                    <div class="total-value" id="totalFat">0</div>
+                    <div class="total-value">Жиры</div>
+                  </div>
                 </div>
                 <div class="total-item">
-                  <div class="total-value" id="totalCarbs">0</div>
-                  <div class="total-label">Углеводы</div>
+                  <div><img src="img/Group 85.svg" /></div>
+                  <div>
+                    <div class="total-value" id="totalCarbs">0</div>
+                    <div class="total-value">Углеводы</div>
+                  </div>
                 </div>
               </div>
-              <button class="order-btn">Оформить заказ</button>
+              <button class="order-btn">
+                <span class="big">Оформить заказ</span>
+              </button>
             </div>
           </div>
         </div>
@@ -782,9 +792,11 @@
         const totalCarbs = dishes.reduce((sum, dish) => sum + dish.carbs, 0);
 
         document.getElementById("totalKcal").textContent = `${totalKcal} ккал`;
-        document.getElementById("totalProtein").textContent = totalProtein;
-        document.getElementById("totalFat").textContent = totalFat;
-        document.getElementById("totalCarbs").textContent = totalCarbs;
+        document.getElementById(
+          "totalProtein"
+        ).textContent = `${totalProtein} г`;
+        document.getElementById("totalFat").textContent = `${totalFat} г`;
+        document.getElementById("totalCarbs").textContent = `${totalCarbs} г`;
       }
     </script>
   </body>
