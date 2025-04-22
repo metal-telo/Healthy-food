@@ -6,11 +6,7 @@
     <title>Доставка здорового питания</title>
     <style>
       body {
-        font-family: "Arial", sans-serif;
-        margin: 0;
-        padding: 20px;
-        color: #333;
-        background-color: #f9f9f9;
+        font-family: "Monsterrat", sans-serif;
       }
 
       .container {
@@ -18,18 +14,8 @@
         margin: 0 auto;
       }
 
-      h1,
-      h2,
-      h3 {
-        color: #2c3e50;
-      }
-
       .section {
-        background: white;
-        border-radius: 10px;
-        padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .options-container {
@@ -40,8 +26,8 @@
       }
 
       .option {
-        border: 1px solid #ddd;
-        border-radius: 8px;
+        border: 1px solid rgba(100, 211, 112, 0.65);
+        border-radius: 15px;
         padding: 15px;
         cursor: pointer;
         transition: all 0.3s;
@@ -51,18 +37,17 @@
       }
 
       .option:hover {
-        border-color: #64d370;
+        border-color: rgba(100, 211, 112, 0.65);
       }
 
       .option.selected {
-        background-color: #64d370;
-        color: white;
-        border-color: #64d370;
+        background-color: rgba(100, 211, 112, 0.65);
+        border-color: rgba(100, 211, 112, 0.65);
       }
 
       .option .kcal {
         font-size: 18px;
-        font-weight: bold;
+        font-weight: 500;
       }
 
       .option .dishes {
@@ -75,30 +60,29 @@
         align-items: center;
         justify-content: space-between;
         padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
+        border: 1px solid rgba(100, 211, 112, 0.65);
+        border-radius: 15px;
         margin-bottom: 10px;
         cursor: pointer;
         transition: all 0.3s;
       }
 
       .price-option.selected {
-        background-color: #64d370;
-        color: white;
-        border-color: #64d370;
+        background-color: rgba(100, 211, 112, 0.65);
+        border-color: rgba(100, 211, 112, 0.65);
       }
 
       .price-option:hover {
-        border-color: #64d370;
+        border-color: rgba(100, 211, 112, 0.65);
       }
 
       .duration {
-        font-weight: bold;
+        font-weight: 500;
       }
 
       .price {
-        color: #64d370;
-        font-weight: bold;
+        color: rgba(100, 211, 112, 0.65);
+        font-weight: 500;
       }
 
       .price-option.selected .price {
@@ -120,17 +104,17 @@
 
       .day {
         padding: 10px 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        background-color: white;
+        border: 1px solid rgba(100, 211, 112, 0.65);
+        border-radius: 15px;
         cursor: pointer;
         flex: 1;
         text-align: center;
       }
 
       .day.selected {
-        background-color: #64d370;
-        color: white;
-        border-color: #64d370;
+        background-color: rgba(100, 211, 112, 0.65);
+        border-color: rgba(100, 211, 112, 0.65);
       }
 
       .menu-container {
@@ -140,15 +124,10 @@
       }
 
       .dish-card {
-        border: 1px solid #eee;
-        border-radius: 8px;
+        background-color: white;
+        border-radius: 15px;
         overflow: hidden;
         transition: transform 0.3s;
-      }
-
-      .dish-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
       .dish-image {
@@ -185,9 +164,9 @@
       }
 
       .total-info {
-        background-color: #f1f8e9;
+        background-color: #ffffff;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 15px;
         margin-top: 20px;
         display: flex;
         justify-content: space-between;
@@ -204,7 +183,7 @@
       }
 
       .total-value {
-        font-weight: bold;
+        font-weight: 500;
         font-size: 18px;
       }
 
@@ -214,12 +193,12 @@
       }
 
       .order-btn {
-        background-color: #64d370;
+        background-color: rgba(100, 211, 112, 1);
         color: white;
         border: none;
         padding: 12px 25px;
-        border-radius: 5px;
-        font-size: 16px;
+        border-radius: 15px;
+        font-weight: 500;
         cursor: pointer;
         transition: background-color 0.3s;
       }
@@ -235,14 +214,47 @@
         align-items: center;
       }
 
+      .section:nth-child(4) {
+        background-color: rgba(100, 211, 112, 0.3);
+        padding: 2%;
+        border-radius: 30px;
+      }
+
       .section-title h2 {
         margin: 0;
       }
 
       .total-calories {
         font-size: 16px;
-        color: #64d370;
-        font-weight: bold;
+        color: rgba(100, 211, 112, 0.65);
+        font-weight: 500;
+      }
+
+      .option .new-price {
+        color: #000000;
+        font-weight: 500;
+      }
+
+      .option.selected .new-price {
+        color: rgb(0, 0, 0);
+      }
+
+      .option:nth-child(1) .new-price {
+        background-color: #64d370;
+        color: white;
+        padding: 1%;
+        border-radius: 3px;
+      }
+
+      .option.selected .old-price {
+        color: rgb(73, 73, 73);
+      }
+
+      .old-price {
+        text-decoration: line-through;
+        color: #999;
+        margin-right: 5px;
+        font-size: 14px;
       }
     </style>
   </head>
@@ -255,26 +267,13 @@
         </div>
       </div>
 
-      <h2>Продолжительность</h2>
-      <div class="section">
-        <h3>Пробные 2 дня</h3>
-        <div class="options-container" id="trialOptions">
-          <!-- Пробные варианты будут добавлены через JS -->
-        </div>
-
-        <h3>Подписка</h3>
-        <div class="options-container" id="subscriptionOptions">
-          <!-- Варианты подписки будут добавлены через JS -->
-        </div>
+      <div class="options-container" id="durationOptions">
+        <!-- Все варианты продолжительности будут добавлены через JS -->
       </div>
-
       <div class="section">
         <div class="days-container" id="dayOptions">
           <!-- Дни недели будут добавлены через JS -->
         </div>
-      </div>
-
-      <div class="section">
         <div class="section-title">
           <h2>Меню на выбранный день</h2>
           <div class="total-calories" id="selectedCaloriesInfo"></div>
@@ -760,36 +759,30 @@
         const currentKcal = calorieOptions[selectedCalorieOption].kcal;
         const prices = priceOptions[currentKcal];
 
-        // Пробные варианты
-        const trialContainer = document.getElementById("trialOptions");
-        trialContainer.innerHTML = "";
+        const container = document.getElementById("durationOptions");
+        container.innerHTML = "";
 
+        // Пробный вариант
         const trialOption = document.createElement("div");
         trialOption.className = `option ${
           selectedDuration === "trial" ? "selected" : ""
         }`;
         trialOption.innerHTML = `
-                <div class="kcal">2 дня</div >
-                <div class="dishes">
-                    
-                    <span class="price">${prices.trial} ₽</span>
-                    <span class="old-price">${prices.trial + 200} ₽</span>
-                </div>
-            `;
+        <div class="kcal">2 дня</div>
+        <div class="dishes">
+            <span class="new-price">${prices.trial} ₽</span>
+            <span class="old-price">${prices.trial + 200} ₽</span>
+        </div>
+    `;
 
         trialOption.addEventListener("click", () => {
           selectedDuration = "trial";
           renderDurationOptions();
         });
 
-        trialContainer.appendChild(trialOption);
+        container.appendChild(trialOption);
 
         // Варианты подписки
-        const subscriptionContainer = document.getElementById(
-          "subscriptionOptions"
-        );
-        subscriptionContainer.innerHTML = "";
-
         const durations = [
           { name: "1 неделя", key: "week" },
           { name: "2 недели", key: "twoWeeks" },
@@ -803,18 +796,18 @@
             selectedDuration === duration.key ? "selected" : ""
           }`;
           option.innerHTML = `
-                    <div class="kcal">${duration.name}</div>
-                    <div class="dishes price">${
-                      prices[duration.key]
-                    } ₽/день</div>
-                `;
+            <div class="kcal">${duration.name}</div>
+            <div class="dishes">
+                <span class="new-price">${prices[duration.key]} ₽/день</span>
+            </div>
+        `;
 
           option.addEventListener("click", () => {
             selectedDuration = duration.key;
             renderDurationOptions();
           });
 
-          subscriptionContainer.appendChild(option);
+          container.appendChild(option);
         });
       }
 

@@ -106,6 +106,9 @@ footer button {
 
 .green {
   margin-top: 0;
+  color: #64d370;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .hero-text {
@@ -263,4 +266,250 @@ input {
 .adres button {
   margin: 0;
   border-radius: 10px;
+}
+
+/*выбор меню*/
+
+.section {
+  margin-bottom: 20px;
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.option {
+  border: 1px solid rgba(100, 211, 112, 0.65);
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  min-width: 120px;
+  flex: 1;
+}
+
+.option:hover {
+  border-color: rgba(100, 211, 112, 0.65);
+}
+
+.option.selected {
+  background-color: rgba(100, 211, 112, 0.65);
+  border-color: rgba(100, 211, 112, 0.65);
+}
+
+.option .kcal {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.option .dishes {
+  font-size: 14px;
+  color: inherit;
+}
+
+.price-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid rgba(100, 211, 112, 0.65);
+  border-radius: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.price-option.selected {
+  background-color: rgba(100, 211, 112, 0.65);
+  border-color: rgba(100, 211, 112, 0.65);
+}
+
+.price-option:hover {
+  border-color: rgba(100, 211, 112, 0.65);
+}
+
+.duration {
+  font-weight: 600;
+}
+
+.price {
+  color: rgba(100, 211, 112, 0.65);
+  font-weight: 600;
+}
+
+.price-option.selected .price {
+  color: white;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 5px;
+}
+
+.days-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.day {
+  padding: 10px 15px;
+  background-color: white;
+  border: 1px solid rgba(100, 211, 112, 0.65);
+  border-radius: 15px;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+
+.day.selected {
+  background-color: rgba(100, 211, 112, 0.65);
+  border-color: rgba(100, 211, 112, 0.65);
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.dish-card {
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.dish-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.dish-info {
+  padding: 15px;
+}
+
+.dish-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.dish-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.dish-detail {
+  display: flex;
+  align-items: center;
+}
+
+.dish-detail span {
+  margin-left: 5px;
+}
+
+.total-info {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-numbers {
+  display: flex;
+  gap: 20px;
+}
+
+.total-item {
+  text-align: center;
+}
+
+.total-value {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.total-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.order-btn {
+  background-color: rgba(100, 211, 112, 1);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.order-btn:hover {
+  background-color: #219653;
+}
+
+.section-title {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
+}
+
+.section:nth-child(5) {
+  background-color: rgba(100, 211, 112, 0.3);
+  padding: 2%;
+  border-radius: 30px;
+}
+
+.section-title h2 {
+  margin: 0;
+}
+
+.total-calories {
+  font-size: 16px;
+  color: rgba(100, 211, 112, 0.65);
+  font-weight: 600;
+}
+
+.option .new-price {
+  color: #000000;
+  font-weight: 600;
+}
+
+.option.selected .new-price {
+  color: rgb(0, 0, 0);
+}
+
+.option:nth-child(1) .new-price {
+  background-color: #64d370;
+  color: white;
+  padding: 1%;
+  border-radius: 3px;
+}
+
+.option.selected .old-price {
+  color: rgb(73, 73, 73);
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 5px;
+  font-size: 14px;
 }

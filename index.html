@@ -95,7 +95,55 @@
         </div>
       </section>
       <section></section>
-      <section></section>
+      <section>
+        <div class="container">
+          <h2>Наше меню</h2>
+          <p class="green">Калорийность</p>
+          <div class="section">
+            <div class="options-container" id="calorieOptions">
+              <!-- Калорийность будет добавлена через JS -->
+            </div>
+          </div>
+
+          <div class="options-container" id="durationOptions">
+            <!-- Все варианты продолжительности будут добавлены через JS -->
+          </div>
+          <div class="section">
+            <div class="days-container" id="dayOptions">
+              <!-- Дни недели будут добавлены через JS -->
+            </div>
+            <div class="section-title">
+              <h2>Меню на выбранный день</h2>
+              <div class="total-calories" id="selectedCaloriesInfo"></div>
+            </div>
+            <div class="menu-container" id="menuContainer">
+              <!-- Меню будет добавлено через JS -->
+            </div>
+
+            <div class="total-info">
+              <div class="total-numbers">
+                <div class="total-item">
+                  <div class="total-value" id="totalKcal">0 ккал</div>
+                  <div class="total-label">Калорийность</div>
+                </div>
+                <div class="total-item">
+                  <div class="total-value" id="totalProtein">0</div>
+                  <div class="total-label">Белки</div>
+                </div>
+                <div class="total-item">
+                  <div class="total-value" id="totalFat">0</div>
+                  <div class="total-label">Жиры</div>
+                </div>
+                <div class="total-item">
+                  <div class="total-value" id="totalCarbs">0</div>
+                  <div class="total-label">Углеводы</div>
+                </div>
+              </div>
+              <button class="order-btn">Оформить заказ</button>
+            </div>
+          </div>
+        </div>
+      </section>
       <section></section>
       <section class="flex" id="map">
         <div id="delivery-map" class="delivery-map">
@@ -161,5 +209,583 @@
         </p>
       </div>
     </footer>
+    <script>
+      // Данные о калорийности
+      const calorieOptions = [
+        { kcal: 900, dishes: 3 },
+        { kcal: 1250, dishes: 4 },
+        { kcal: 1600, dishes: 5 },
+        { kcal: 2050, dishes: 6 },
+      ];
+
+      // Цены в зависимости от калорийности
+      const priceOptions = {
+        900: {
+          trial: 800,
+          week: 1500,
+          twoWeeks: 1400,
+          threeWeeks: 1320,
+          fourWeeks: 1250,
+        },
+        1250: {
+          trial: 1000,
+          week: 1700,
+          twoWeeks: 1600,
+          threeWeeks: 1520,
+          fourWeeks: 1450,
+        },
+        1600: {
+          trial: 1200,
+          week: 1900,
+          twoWeeks: 1800,
+          threeWeeks: 1720,
+          fourWeeks: 1650,
+        },
+        2050: {
+          trial: 1400,
+          week: 2100,
+          twoWeeks: 2000,
+          threeWeeks: 1920,
+          fourWeeks: 1850,
+        },
+      };
+
+      // Дни недели
+      const days = [
+        "понедельник",
+        "вторник",
+        "среда",
+        "четверг",
+        "пятница",
+        "суббота",
+        "воскресенье",
+      ];
+
+      // Данные меню для разных калорийностей
+      const menuData = {
+        900: {
+          понедельник: [
+            {
+              name: "Лёгкий завтрак с йогуртом",
+              image:
+                "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 250,
+              protein: 12,
+              fat: 8,
+              carbs: 30,
+              weight: 250,
+            },
+            {
+              name: "Салат с курицей и овощами",
+              image:
+                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 300,
+              protein: 25,
+              fat: 10,
+              carbs: 20,
+              weight: 300,
+            },
+            {
+              name: "Овощной суп",
+              image:
+                "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 200,
+              protein: 8,
+              fat: 5,
+              carbs: 30,
+              weight: 300,
+            },
+            {
+              name: "Фруктовый перекус",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 150,
+              protein: 2,
+              fat: 1,
+              carbs: 35,
+              weight: 200,
+            },
+          ],
+          вторник: [
+            {
+              name: "Овсяная каша с ягодами",
+              image:
+                "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 280,
+              protein: 10,
+              fat: 5,
+              carbs: 45,
+              weight: 250,
+            },
+            {
+              name: "Рыба на пару с брокколи",
+              image:
+                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 320,
+              protein: 30,
+              fat: 8,
+              carbs: 15,
+              weight: 300,
+            },
+            {
+              name: "Творог с зеленью",
+              image:
+                "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 180,
+              protein: 20,
+              fat: 8,
+              carbs: 5,
+              weight: 200,
+            },
+            {
+              name: "Овощной смузи",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 120,
+              protein: 4,
+              fat: 2,
+              carbs: 20,
+              weight: 250,
+            },
+          ],
+        },
+        1250: {
+          понедельник: [
+            {
+              name: "Утренний боул с лососем и перепелинным яйцом",
+              image:
+                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 320,
+              protein: 20,
+              fat: 10,
+              carbs: 30,
+              weight: 300,
+            },
+            {
+              name: "Боул с куриными фрикадельками в кунжуте",
+              image:
+                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 320,
+              protein: 20,
+              fat: 10,
+              carbs: 30,
+              weight: 300,
+            },
+            {
+              name: "Кукурузные блинчики с фруктовым тар-таром",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 320,
+              protein: 20,
+              fat: 10,
+              carbs: 10,
+              weight: 300,
+            },
+            {
+              name: "Морепродукты в соусе Гарсия со стручковой фасолью",
+              image:
+                "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 320,
+              protein: 20,
+              fat: 15,
+              carbs: 60,
+              weight: 300,
+            },
+          ],
+          вторник: [
+            {
+              name: "Гречневая каша с авокадо и яйцом пашот",
+              image:
+                "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 350,
+              protein: 18,
+              fat: 12,
+              carbs: 40,
+              weight: 320,
+            },
+            {
+              name: "Куриная грудка с киноа и овощами",
+              image:
+                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 380,
+              protein: 35,
+              fat: 8,
+              carbs: 30,
+              weight: 350,
+            },
+            {
+              name: "Салат с тунцом и яйцом",
+              image:
+                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 290,
+              protein: 25,
+              fat: 12,
+              carbs: 15,
+              weight: 280,
+            },
+            {
+              name: "Тыквенный суп-пюре с гренками",
+              image:
+                "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 230,
+              protein: 8,
+              fat: 10,
+              carbs: 25,
+              weight: 300,
+            },
+          ],
+        },
+        1600: {
+          понедельник: [
+            {
+              name: "Омлет с овощами и сыром",
+              image:
+                "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 400,
+              protein: 25,
+              fat: 22,
+              carbs: 20,
+              weight: 300,
+            },
+            {
+              name: "Стейк из лосося с картофелем",
+              image:
+                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 450,
+              protein: 35,
+              fat: 20,
+              carbs: 35,
+              weight: 350,
+            },
+            {
+              name: "Паста с морепродуктами",
+              image:
+                "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 420,
+              protein: 25,
+              fat: 15,
+              carbs: 45,
+              weight: 350,
+            },
+            {
+              name: "Творожная запеканка с ягодами",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 330,
+              protein: 20,
+              fat: 12,
+              carbs: 35,
+              weight: 250,
+            },
+          ],
+          вторник: [
+            {
+              name: "Сырники со сметаной",
+              image:
+                "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 380,
+              protein: 22,
+              fat: 15,
+              carbs: 40,
+              weight: 250,
+            },
+            {
+              name: "Говядина с гречкой и салатом",
+              image:
+                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 480,
+              protein: 40,
+              fat: 18,
+              carbs: 35,
+              weight: 350,
+            },
+            {
+              name: "Крем-суп из брокколи",
+              image:
+                "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 320,
+              protein: 15,
+              fat: 20,
+              carbs: 25,
+              weight: 300,
+            },
+            {
+              name: "Фруктовый салат с йогуртом",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 250,
+              protein: 8,
+              fat: 5,
+              carbs: 45,
+              weight: 250,
+            },
+          ],
+        },
+        2050: {
+          понедельник: [
+            {
+              name: "Яичница с беконом и тостами",
+              image:
+                "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 500,
+              protein: 30,
+              fat: 30,
+              carbs: 35,
+              weight: 300,
+            },
+            {
+              name: "Стейк рибай с картофелем фри",
+              image:
+                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 650,
+              protein: 45,
+              fat: 35,
+              carbs: 45,
+              weight: 400,
+            },
+            {
+              name: "Паста карбонара",
+              image:
+                "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 550,
+              protein: 25,
+              fat: 30,
+              carbs: 50,
+              weight: 350,
+            },
+            {
+              name: "Чизкейк с ягодами",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 350,
+              protein: 10,
+              fat: 20,
+              carbs: 35,
+              weight: 200,
+            },
+          ],
+          вторник: [
+            {
+              name: "Блины с мёдом и орехами",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 450,
+              protein: 15,
+              fat: 25,
+              carbs: 45,
+              weight: 250,
+            },
+            {
+              name: "Утка с яблоками и картофелем",
+              image:
+                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 700,
+              protein: 50,
+              fat: 40,
+              carbs: 40,
+              weight: 400,
+            },
+            {
+              name: "Лазанья болоньезе",
+              image:
+                "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 550,
+              protein: 35,
+              fat: 25,
+              carbs: 50,
+              weight: 350,
+            },
+            {
+              name: "Тирамису",
+              image:
+                "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+              kcal: 350,
+              protein: 10,
+              fat: 20,
+              carbs: 35,
+              weight: 200,
+            },
+          ],
+        },
+      };
+
+      // Для простоты заполним остальные дни аналогичными блюдами
+      for (let kcal in menuData) {
+        for (let day of days.slice(2)) {
+          menuData[kcal][day] = [...menuData[kcal]["понедельник"]];
+        }
+      }
+
+      // Текущие выбранные значения
+      let selectedCalorieOption = 1; // Индекс выбранной калорийности (по умолчанию 1250 ккал)
+      let selectedDay = days[0]; // По умолчанию понедельник
+      let selectedDuration = null; // Выбранная продолжительность
+
+      // Инициализация страницы
+      document.addEventListener("DOMContentLoaded", function () {
+        renderCalorieOptions();
+        renderDurationOptions();
+        renderDayOptions();
+        renderMenu();
+        updateTotals();
+      });
+
+      // Рендер опций калорийности
+      function renderCalorieOptions() {
+        const container = document.getElementById("calorieOptions");
+        container.innerHTML = "";
+
+        calorieOptions.forEach((option, index) => {
+          const optionElement = document.createElement("div");
+          optionElement.className = `option ${
+            index === selectedCalorieOption ? "selected" : ""
+          }`;
+          optionElement.innerHTML = `
+                    <div class="kcal">${option.kcal} ккал</div>
+                    <div class="dishes">${option.dishes} блюда</div>
+                `;
+
+          optionElement.addEventListener("click", () => {
+            selectedCalorieOption = index;
+            renderCalorieOptions();
+            renderDurationOptions();
+            renderMenu();
+            updateTotals();
+          });
+
+          container.appendChild(optionElement);
+        });
+      }
+
+      // Рендер опций продолжительности
+      function renderDurationOptions() {
+        const currentKcal = calorieOptions[selectedCalorieOption].kcal;
+        const prices = priceOptions[currentKcal];
+
+        const container = document.getElementById("durationOptions");
+        container.innerHTML = "";
+
+        // Пробный вариант
+        const trialOption = document.createElement("div");
+        trialOption.className = `option ${
+          selectedDuration === "trial" ? "selected" : ""
+        }`;
+        trialOption.innerHTML = `
+        <div class="kcal">Пробные 2 дня</div>
+        <div class="dishes">
+            <span class="new-price">${prices.trial} ₽</span>
+            <span class="old-price">${prices.trial + 200} ₽</span>
+        </div>
+    `;
+
+        trialOption.addEventListener("click", () => {
+          selectedDuration = "trial";
+          renderDurationOptions();
+        });
+
+        container.appendChild(trialOption);
+
+        // Варианты подписки
+        const durations = [
+          { name: "1 неделя", key: "week" },
+          { name: "2 недели", key: "twoWeeks" },
+          { name: "3 недели", key: "threeWeeks" },
+          { name: "4 недели", key: "fourWeeks" },
+        ];
+
+        durations.forEach((duration) => {
+          const option = document.createElement("div");
+          option.className = `option ${
+            selectedDuration === duration.key ? "selected" : ""
+          }`;
+          option.innerHTML = `
+            <div class="kcal">${duration.name}</div>
+            <div class="dishes">
+                <span class="new-price">${prices[duration.key]} ₽/день</span>
+            </div>
+        `;
+
+          option.addEventListener("click", () => {
+            selectedDuration = duration.key;
+            renderDurationOptions();
+          });
+
+          container.appendChild(option);
+        });
+      }
+
+      // Рендер дней недели
+      function renderDayOptions() {
+        const container = document.getElementById("dayOptions");
+        container.innerHTML = "";
+
+        days.forEach((day) => {
+          const dayElement = document.createElement("div");
+          dayElement.className = `day ${day === selectedDay ? "selected" : ""}`;
+          dayElement.textContent = day;
+
+          dayElement.addEventListener("click", () => {
+            selectedDay = day;
+            renderDayOptions();
+            renderMenu();
+            updateTotals();
+          });
+
+          container.appendChild(dayElement);
+        });
+      }
+
+      // Рендер меню для выбранного дня и калорийности
+      function renderMenu() {
+        const container = document.getElementById("menuContainer");
+        container.innerHTML = "";
+
+        const currentKcal = calorieOptions[selectedCalorieOption].kcal;
+        const dishes = menuData[currentKcal][selectedDay];
+
+        document.getElementById(
+          "selectedCaloriesInfo"
+        ).textContent = `Выбрано: ${currentKcal} ккал`;
+
+        dishes.forEach((dish) => {
+          const dishElement = document.createElement("div");
+          dishElement.className = "dish-card";
+          dishElement.innerHTML = `
+                    <img src="${dish.image}" alt="${dish.name}" class="dish-image">
+                    <div class="dish-info">
+                        <div class="dish-title">${dish.name}</div>
+                        <div class="dish-details">
+                            <div class="dish-detail">К: ${dish.kcal} ккал</div>
+                            <div class="dish-detail">Б: ${dish.protein} г</div>
+                            <div class="dish-detail">Ж: ${dish.fat} г</div>
+                            <div class="dish-detail">У: ${dish.carbs} г</div>
+                            <div class="dish-detail">Вес: ${dish.weight}г</div>
+                        </div>
+                    </div>
+                `;
+
+          container.appendChild(dishElement);
+        });
+      }
+
+      // Обновление итоговых значений БЖУ
+      function updateTotals() {
+        const currentKcal = calorieOptions[selectedCalorieOption].kcal;
+        const dishes = menuData[currentKcal][selectedDay];
+
+        const totalKcal = dishes.reduce((sum, dish) => sum + dish.kcal, 0);
+        const totalProtein = dishes.reduce(
+          (sum, dish) => sum + dish.protein,
+          0
+        );
+        const totalFat = dishes.reduce((sum, dish) => sum + dish.fat, 0);
+        const totalCarbs = dishes.reduce((sum, dish) => sum + dish.carbs, 0);
+
+        document.getElementById("totalKcal").textContent = `${totalKcal} ккал`;
+        document.getElementById("totalProtein").textContent = totalProtein;
+        document.getElementById("totalFat").textContent = totalFat;
+        document.getElementById("totalCarbs").textContent = totalCarbs;
+      }
+    </script>
   </body>
 </html>
