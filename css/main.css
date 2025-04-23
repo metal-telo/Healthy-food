@@ -217,7 +217,6 @@ h2 {
 /*карты*/
 .delivery-map {
   width: 70%;
-  height: 400px;
 }
 
 #map {
@@ -230,6 +229,7 @@ h2 {
 
 #map h2 {
   margin-bottom: 8px;
+  margin-top: 0;
 }
 
 .adres p {
@@ -456,11 +456,6 @@ input {
   font-size: 18px;
 }
 
-.total-label {
-  font-size: 14px;
-  color: #666;
-}
-
 .order-btn,
 #totalKcal {
   background-color: rgba(100, 211, 112, 1);
@@ -546,6 +541,21 @@ input {
   }
 }
 
+@media (width<=830px) {
+  #map {
+    flex-direction: column-reverse;
+    gap: 2%;
+  }
+
+  .delivery-map {
+    width: 100%;
+  }
+
+  #delivery-map {
+    margin-top: 2%;
+  }
+}
+
 @media (width<=750px) {
   .total-info {
     display: block;
@@ -584,6 +594,12 @@ input {
   }
   .order-btn {
     width: 100%;
+  }
+  .section:nth-child(6) {
+    border-radius: 20px;
+  }
+  #map {
+    border-radius: 20px;
   }
 }
 
