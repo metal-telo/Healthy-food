@@ -1070,6 +1070,34 @@ strong {
     background-position: right 12px center;
     padding-right: 35px;
   }
+
+  .benefits-content {
+    padding: 10px;
+    display: grid;
+  }
+
+  .benefits-content:nth-child(1) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .hero-content {
+    display: grid;
+    width: 50px;
+  }
+
+  .benefits-contentt {
+    padding: 10px;
+    display: grid;
+  }
+
+  .actions, #srok {
+    padding: 10px;
+    display: grid;
+  }
+  #srok .flex {
+    flex-direction: column;
+  }
 }
 
 @media (width<=1050px) {
