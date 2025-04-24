@@ -12,6 +12,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <header>
@@ -21,6 +25,24 @@
         <div><a href="">Программы питания</a></div>
         <div><a href="">Доставки</a></div>
         <div><a href="">Акции</a></div>
+        <div class="theme-switcher">
+          <i class="fa fa-sun-o" aria-hidden="true"></i>
+          <label class="switch btn-color-mode-switch">
+            <input
+              type="checkbox"
+              name="color_mode"
+              id="color_mode"
+              value="1"
+            />
+            <label
+              for="color_mode"
+              data-on="Dark"
+              data-off="Light"
+              class="btn-color-mode-switch-inner"
+            ></label>
+          </label>
+          <i class="fa fa-moon-o" aria-hidden="true"></i>
+        </div>
       </div>
       <div>
         <p>
@@ -46,7 +68,7 @@
             </div>
             <div class="hero-image">
               <img
-                src="img/Group 1000004099.jpg"
+                src="img/Group 1000004099.svg"
                 alt="Аппетитные тосты с авокадо"
               />
             </div>
@@ -58,7 +80,7 @@
         <div class="container">
           <div class="benefits-content">
             <div class="benefits-image">
-              <img src="img/Group.jpg" alt="Руки в форме сердца" />
+              <img src="img/Groupp.svg" alt="Руки в форме сердца" />
             </div>
             <div class="benefits-text p h2">
               <h2>Еда, которая сделает тебя лучше!</h2>
@@ -89,12 +111,49 @@
               </p>
             </div>
             <div class="benefits-imagetwo">
-              <img src="img/Frame.jpg" alt="Рука со звездами" />
+              <img src="img/Frame.svg" alt="Рука со звездами" />
             </div>
           </div>
         </div>
       </section>
-      <section></section>
+      <section class="diet-selection">
+        <div class="container">
+          <h2 class="diet-title">Подберите рацион для своих целей</h2>
+          <DIV class="diet-form">
+            <div class="gender-selection">
+                <label class="switch btn-color-mode-switch">
+                    <input type="checkbox" name="gender" id="gender">
+                    <label for="gender" data-on="M" data-off="Ж" class="btn-color-mode-switch-inner"></label>
+                </label>  
+            </div>
+            <div class="form-group">
+              <input type="number" placeholder="Ваш вес" class="form-input">
+            </div>
+            <div class="form-group">
+              <input type="number" placeholder="Ваш рост" class="form-input">
+            </div>
+            <div class="form-group">
+              <input type="number" placeholder="Ваш возраст" class="form-input">
+            </div>
+            <div class="form-group">
+              <select class="form-select">
+                <option value="" disabled selected>Активность</option>
+                <option>Низкая</option>
+                <option>Средняя</option>
+                <option>Высокая</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select class="form-select">
+                <option value="" disabled selected>Выберите цель</option>
+                <option>Похудение</option>
+                <option>Поддержание веса</option>
+                <option>Набор массы</option>
+              </select>
+            </div>
+            <button class="calculate-btn">Рассчитать рацион</button>
+          </div>
+        </section>
       <section id="menu">
         <div class="container">
           <h2>Наше меню</h2>
@@ -145,15 +204,37 @@
             </div>
           </div>
         </div>
-      </section>
-      <section></section>
+      </section><section class="benefits-section">
+        <div class="container">
+            <div class="benefits-contentt">
+                <div class="benefits-imagee">
+                    <img
+                    src="img/Group 62.svg"
+                    alt="Руки и коробка"
+                  />
+                </div>
+                <div class="benefits-textt">
+                    
+                    <h2>Будем доставлять наборы <span>каждый день</span></h2>
+                    <p>
+                        Доставка осуществляется каждый день с 06:00 до 12:00. <br>
+                        Выбор интервала — 2 часа.
+                    </p>
+                    <p>
+                        Заявки принимаются не позднее, чем за день до предполагаемой доставки.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
       <section class="flex" id="map">
         <div id="delivery-map" class="delivery-map">
           <script
             type="text/javascript"
             charset="utf-8"
             async
-            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A135bcc8be98a7454dee900eb5f08d531e2c37e235cf873a8874399c93936de60&amp;width=100%25&amp;height=350&amp;lang=ru_RU&amp;scroll=true"
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A135bcc8be98a7454dee900eb5f08d531e2c37e235cf873a8874399c93936de60&amp;width=100%25&amp;height=300&amp;lang=ru_RU&amp;scroll=true"
           ></script>
         </div>
         <div class="delivery-map">
@@ -187,7 +268,7 @@
             <span class="small">с 9:00 до 21:00</span></button
           ><a class="btnimg"><img src="img/Frame-1.svg" /></a
           ><a class="btnimg"><img src="img/Frame-2.svg" /></a
-          ><a class="btnimg"><img src="img/Frame.svg" /></a>
+          ><a class="btnimg"><img src="img/wk.svg" /></a>
         </div>
         <p class="big">
           ООО «ПораПоесть», г. Москва,<br />
