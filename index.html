@@ -152,6 +152,13 @@
               </select>
             </div>
             <button class="calculate-btn">Рассчитать рацион</button>
+          </div>        
+          <div id="calorieModal" class="modal" style="display:none;">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Рассчитанная калорийность</h2>
+            <p>Ваш рацион содержит <span id="calorieResult"></span> ккал.</p>
+            <button id="closeModalBtn">Ок</button>
           </div>
         </section>
       <section id="menu">
@@ -293,6 +300,69 @@
       </div>
     </footer>
     <script>
+// BMR
+function calculateBMR(weight, height, age, gender) {
+  if (gender === 'М') {
+    return 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    return 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+}
+
+document.querySelector('.calculate-btn').addEventListener('click', function() {
+  const weightInput = document.querySelectorAll('.form-input')[0];
+  const heightInput = document.querySelectorAll('.form-input')[1];
+  const ageInput = document.querySelectorAll('.form-input')[2];
+  const activitySelect = document.querySelectorAll('.form-select')[0];
+  const goalSelect = document.querySelectorAll('.form-select')[1];
+
+  const weight = parseFloat(weightInput.value);
+  const height = parseFloat(heightInput.value);
+  const age = parseInt(ageInput.value);
+  const activity = activitySelect.value;
+  const goal = goalSelect.value; 
+
+  if (isNaN(weight) || isNaN(height) || isNaN(age) || !activity || !goal) {
+    alert('Пожалуйста, заполните все поля.');
+    return;
+  }
+
+  let activityMultiplier = 1.2; // Низкая
+  if (activity === 'Средняя') activityMultiplier = 1.55;
+  if (activity === 'Высокая') activityMultiplier = 1.725;
+
+  const BMR = calculateBMR(weight, height, age, document.querySelectorAll('.gender-selection input[type="checkbox"]')[0].checked ? 'М' : 'Ж');
+
+  let calories = BMR * activityMultiplier;
+
+  if (goal === 'Похудение') {
+    calories -= 500; // дефицит
+  } else if (goal === 'Набор массы') {
+    calories += 500; // избыток
+  } 
+
+  calories = Math.round(calories);
+
+  document.getElementById('calorieResult').textContent = calories;
+
+  const modal = document.getElementById('calorieModal');
+  modal.style.display = 'flex';
+});
+
+function closeModal() {
+  document.getElementById('calorieModal').style.display = 'none';
+}
+
+document.querySelector('.close').addEventListener('click', closeModal);
+document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('calorieModal');
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+
       document.addEventListener('DOMContentLoaded', function() {
 const maleBtn = document.getElementById('maleBtn');
 const femaleBtn = document.getElementById('femaleBtn');
