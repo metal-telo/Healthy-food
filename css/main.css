@@ -1031,6 +1031,15 @@ input {
   .order-btn {
     font-size: 18px !important;
   }
+  #foot {
+    flex-direction: column;
+    align-items: start;
+    gap: 0;
+  }
+  #foot .big {
+    text-align: left;
+    margin: 1% 0;
+  }
 }
 
 @media (width<=830px) {
@@ -1093,6 +1102,24 @@ input {
   #map {
     border-radius: 20px;
   }
+  #foot img {
+    width: 60px;
+  }
+  #foot big {
+    font-size: 20px;
+  }
+  footer p {
+    margin: 1.7% 0;
+  }
+  footer button {
+    padding: 2%;
+    border-radius: 12px;
+  }
+  footer a {
+    margin: 0;
+    padding: 0%;
+    text-align: center;
+  }
 }
 
 @media (width<=550px) {
@@ -1120,5 +1147,15 @@ input {
   .options-container {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  #foot img {
+    width: 50px;
+  }
+  #f {
+    font-size: 14px !important;
+  }
+  footer button {
+    padding: 2%;
+    border-radius: 12px;
   }
 }
