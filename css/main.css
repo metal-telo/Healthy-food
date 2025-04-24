@@ -1131,30 +1131,6 @@ strong {
   .form-select {
     font-size: 14px;
   }
-}
-
-@media (max-width: 480px) {
-  /* Еще большее уменьшение placeholder на маленьких экранах */
-  .form-input::placeholder,
-  .form-select {
-    font-size: 12px;
-  }
-
-  .calculate-btn {
-    font-size: 16px;
-    padding: 0 20px;
-  }
-
-  .form-input,
-  .form-select {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .form-select {
-    background-position: right 12px center;
-    padding-right: 35px;
-  }
 
   .benefits-content {
     padding: 10px;
@@ -1179,6 +1155,48 @@ strong {
   .actions {
     padding: 10px;
     display: grid;
+  }
+
+  .hero-content {
+    padding: 0%;
+    width: 100%;
+  }
+  .benefits-image {
+    margin: 0 auto;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    font-size: 15px !important;
+    margin-bottom: 1%;
+  }
+
+  .hero-content img {
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Еще большее уменьшение placeholder на маленьких экранах */
+  .form-input::placeholder,
+  .form-select {
+    font-size: 12px;
+  }
+
+  .calculate-btn {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .form-select {
+    background-position: right 12px center;
+    padding-right: 35px;
   }
 }
 
@@ -1233,6 +1251,9 @@ strong {
   }
   .benefits-imagee {
     display: none;
+  }
+  #srok img {
+    width: 30%;
   }
 }
 
@@ -1304,6 +1325,12 @@ strong {
   }
 }
 
+@media (width<=600px) {
+  #srok img {
+    display: none;
+  }
+}
+
 @media (width<=550px) {
   .menu-container {
     display: grid;
@@ -1312,8 +1339,7 @@ strong {
 }
 
 @media (width<=500px) {
-  .total-numbers img,
-  #srok img {
+  .total-numbers img {
     display: none;
   }
   .green {
