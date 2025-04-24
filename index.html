@@ -362,9 +362,9 @@
       //карта
       const deliveryPrices = {
   'Москва (в пределах садового кольца)': { price: 100, time: 15 },
-  'Москва (в пределах ТТК)': { price: 250, time: 30 },
-  'Москва (в пределах МКАД)': { price: 400, time: 50 },
-  'МО (в пределах ЦКАД)': { price: 800, time: 120 }
+  'Москва (в пределах ТТК)': { price: 150, time: 30 },
+  'Москва (в пределах МКАД)': { price: 200, time: 50 },
+  'МО (в пределах ЦКАД)': { price: 600, time: 120 }
 };
 
 // Обработчик формы доставки
@@ -414,7 +414,7 @@ document.querySelector('.adres').addEventListener('submit', function(e) {
   // Формируем результат
   let resultHTML = `
     <div class="delivery-result">
-      <p>Стоимость доставки с учётом выбранного плана питания на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
+      <p>Стоимость подписки с учётом выбранного плана питания и адреса на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
       <p>Доставка от ресторана займет примерно <strong>${delivery.time} минут</strong></p>
     </div>
   `;
