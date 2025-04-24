@@ -971,6 +971,10 @@ input {
   cursor: pointer;
 }
 
+.dark-preview .modal-content {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 
 /* Адаптивность */
 @media (max-width: 992px) {
