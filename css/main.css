@@ -331,6 +331,15 @@ input {
   background-color: #64d370;
 }
 
+strong {
+  background-color: #64d370;
+  color: white;
+  padding: 1% 1.5%;
+  border-radius: 3px;
+  font-weight: 600;
+  font-family: Montserrat;
+}
+
 /*выбор меню*/
 
 #menu .green {
@@ -568,7 +577,7 @@ input {
 .option:nth-child(1) .new-price {
   background-color: #64d370;
   color: white;
-  padding: 1%;
+  padding: 1% 2%;
   border-radius: 3px;
 }
 

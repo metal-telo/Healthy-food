@@ -258,7 +258,7 @@
               </select>
             </p>
             <div>
-              <input type="text" placeholder="Введите адресс" required /><button
+              <input type="text" placeholder="Введите адресс" minlength="10" /><button
                 type="submit"
               >
                 Рассчитать
@@ -321,6 +321,87 @@
       </div>
     </footer>
     <script>
+      //карта
+      const deliveryPrices = {
+  'Москва (в пределах садового кольца)': { price: 100, time: 15 },
+  'Москва (в пределах ТТК)': { price: 250, time: 30 },
+  'Москва (в пределах МКАД)': { price: 400, time: 50 },
+  'МО (в пределах ЦКАД)': { price: 800, time: 120 }
+};
+
+// Обработчик формы доставки
+document.querySelector('.adres').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Проверяем, что выбран план питания и продолжительность
+  if (selectedCalorieOption === null || selectedDuration === null) {
+    alert('Пожалуйста, сначала выберите план питания и продолжительность');
+    return;
+  }
+  
+  const currentKcal = calorieOptions[selectedCalorieOption].kcal;
+  const prices = priceOptions[currentKcal];
+  const zoneSelect = document.querySelector('.adres select');
+  const selectedZone = zoneSelect.options[zoneSelect.selectedIndex].text;
+  
+  // Получаем данные о доставке
+  const delivery = deliveryPrices[selectedZone];
+  
+  // Рассчитываем стоимость
+  let totalPrice;
+  let durationText;
+  
+  if (selectedDuration === 'trial') {
+    totalPrice = prices.trial + delivery.price;
+    durationText = '2 дня';
+  } else {
+    const durationPrices = {
+      'week': prices.week,
+      'twoWeeks': prices.twoWeeks,
+      'threeWeeks': prices.threeWeeks,
+      'fourWeeks': prices.fourWeeks
+    };
+    totalPrice = durationPrices[selectedDuration] + delivery.price;
+    
+    // Текст продолжительности
+    const durationTexts = {
+      'week': '1 неделю',
+      'twoWeeks': '2 недели',
+      'threeWeeks': '3 недели',
+      'fourWeeks': '4 недели'
+    };
+    durationText = durationTexts[selectedDuration];
+  }
+  
+  // Формируем результат
+  let resultHTML = `
+    <div class="delivery-result">
+      <p>Стоимость доставки с учётом выбранного плана питания на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
+      <p>Доставка от ресторана займет примерно <strong>${delivery.time} минут</strong></p>
+    </div>
+  `;
+  
+  // Отображаем результат - можно добавить перед кнопкой "Рассчитать"
+  const existingResult = document.querySelector('.delivery-result');
+  if (existingResult) {
+    existingResult.innerHTML = resultHTML;
+  } else {
+    const form = document.querySelector('.adres');
+    const resultDiv = document.createElement('p');
+    resultDiv.className = 'delivery-result';
+    resultDiv.innerHTML = resultHTML;
+    form.appendChild(resultDiv);
+  }
+});
+
+// Добавляем стили для отображения результата
+const style = document.createElement('style');
+style.textContent = `
+  .delivery-result {
+    flex-direction: column;
+  }
+`;
+document.head.appendChild(style);
 // BMR
 function calculateBMR(weight, height, age, gender) {
   if (gender === 'М') {
