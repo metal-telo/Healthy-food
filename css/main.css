@@ -42,7 +42,7 @@ header,
 .burger {
   display: flex;
   justify-content: space-between;
-  text-align: center;
+  text-align: right;
   align-items: center;
   width: 100%;
   text-wrap: nowrap;
@@ -63,7 +63,7 @@ header,
 
 .burger .content {
   border-bottom-left-radius: 40px;
-  padding: 30px 55px 30px 20px;
+  padding: 20px 55px 30px 20px;
   text-align: right;
   box-shadow: 2px 2px 10px#64d370;
   background-color: #ffffff;
@@ -206,7 +206,6 @@ footer button {
   max-width: 700px;
   display: block;
 }
-
 .hero-buttons .button {
   padding: 10px 20px;
   margin-right: 10px;
@@ -278,12 +277,12 @@ footer button {
 
 .benefits-contentt {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: start;
 }
 
 .benefits-imagee {
-  flex: 0 0 20%;
+  flex: 0 0 10%;
   margin-top: 3%;
 }
 
@@ -398,7 +397,7 @@ strong {
   background-color: #64d370;
   color: white;
   padding: 1% 1.5%;
-  border-radius: 3px;
+  border-radius: 5px;
   font-weight: 600;
   font-family: Montserrat;
 }
@@ -690,17 +689,16 @@ strong {
 .diet-selection {
   background-color: rgba(100, 211, 112, 0.3);
   border-radius: 30px;
-  padding: 40px;
+  padding: 2%;
   margin: 60px 0;
 }
 
 .diet-title {
   color: #000000;
   text-align: left;
-  margin-bottom: 30px;
-  margin-top: -10px;
-  font-size: 40px;
-  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-weight: 700;
 }
 
 .diet-form {
@@ -727,7 +725,7 @@ strong {
 .gender-btn {
   background-color: #fff;
   border: 1px solid #ddd;
-  padding: 12px 20px;
+  padding: 20px 20px;
   border-radius: 20px;
   cursor: pointer;
   margin-right: 10px;
@@ -1103,9 +1101,15 @@ strong {
     flex-wrap: wrap;
   }
 
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+
   .form-group {
     flex: 1 1 calc(50% - 10px);
-    margin-bottom: 15px;
   }
 
   .form-group:nth-child(2),
@@ -1126,6 +1130,49 @@ strong {
   .form-input::placeholder,
   .form-select {
     font-size: 14px;
+  }
+
+  .benefits-content {
+    padding: 10px;
+    display: grid;
+  }
+
+  .benefits-content:nth-child(1) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .hero-content {
+    display: grid;
+    width: 50px;
+  }
+
+  .benefits-contentt {
+    padding: 10px;
+    display: grid;
+  }
+
+  .actions {
+    padding: 10px;
+    display: grid;
+  }
+
+  .hero-content {
+    padding: 0%;
+    width: 100%;
+  }
+  .benefits-image {
+    margin: 0 auto;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    font-size: 15px !important;
+    margin-bottom: 1%;
+  }
+
+  .hero-content img {
+    max-width: 550px;
   }
 }
 
@@ -1199,6 +1246,15 @@ strong {
   .burger .content {
     padding: 30px 35px 30px 20px;
   }
+  .benefits-contentt {
+    flex-direction: column-reverse;
+  }
+  .benefits-imagee {
+    display: none;
+  }
+  #srok img {
+    width: 30%;
+  }
 }
 
 @media (width<=750px) {
@@ -1264,6 +1320,15 @@ strong {
     padding: 0%;
     text-align: center;
   }
+  .diet-form {
+    gap: 7px;
+  }
+}
+
+@media (width<=600px) {
+  #srok img {
+    display: none;
+  }
 }
 
 @media (width<=550px) {
@@ -1281,9 +1346,35 @@ strong {
     font-size: 24px;
   }
 
-  h2 {
+  h1 {
     font-size: 30px;
+  }
+
+  .hero-content {
+    padding: 0%;
+    width: 100%;
+  }
+
+  .hero-content .green {
+    margin-bottom: 0%;
+    font-size: 20px;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    font-size: 15px !important;
+    margin-bottom: 1%;
+  }
+
+  h2 {
+    font-size: 25px;
     margin-bottom: 8px;
+  }
+
+  .benefits-text p,
+  .benefits-textt p,
+  .grey {
+    font-size: 16px !important;
   }
 }
 

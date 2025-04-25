@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Просто поесть</title>
+    <title>Пора поесть</title>
     <link rel="icon" href="img/icon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,6 +63,30 @@
           <a href="#">Программы питания</a><br>
           <a href="#">Доставки</a><br>
           <a href="#">Акции</a>
+          <div>
+            <p>
+              <span class="big">+7 999 555-11-77</span> <br />
+              <span class="small">с 9:00 до 21:00</span>
+            </p>
+          </div>
+          <div class="theme-switcher">
+            <i class="fa fa-sun-o" aria-hidden="true"></i>
+            <label class="switch btn-color-mode-switch">
+              <input
+                type="checkbox"
+                name="color_mode"
+                id="color_mode"
+                value="1"
+              />
+              <label
+                for="color_mode"
+                data-on="Dark"
+                data-off="Light"
+                class="btn-color-mode-switch-inner"
+              ></label>
+            </label>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -125,7 +149,7 @@
                 масла, маринуем мясо, рыбу и морепродукты.
               </p>
             </div>
-            <div class="benefits-imagetwo">
+            <div class="benefits-image">
               <img src="img/Frame.svg" alt="Рука со звездами" />
             </div>
           </div>
@@ -273,7 +297,7 @@
               </select>
             </p>
             <div>
-              <input type="text" placeholder="Введите адресс" minlength="10" /><button
+              <input type="text" placeholder="Введите адрес" minlength="10" /><button
                 type="submit"
               >
                 Рассчитать
@@ -291,9 +315,8 @@
         <a href="#menu">Попробовать</a>
       </section>
       <section id="srok">
-        
         <div class="flex">
-          <div class="grey"><h2>Пробный рацион</h2>
+          <div class="grey"><h2>Информация о сроках хранения</h2>
 <p class="grey">Мы рекомендуем хранить приготовленные блюда в холодильнике не дольше 24 часов. После вскрытия срок хранения сокращается до 4 часов.  Точные сроки годности указаны на упаковке каждого блюда при доставке.  </p>
           <p class="grey">Пожалуйста, обратите внимание на эти указания для обеспечения безопасности и свежести продукта.</p>
           </div class="benefits-imagee">
@@ -339,9 +362,9 @@
       //карта
       const deliveryPrices = {
   'Москва (в пределах садового кольца)': { price: 100, time: 15 },
-  'Москва (в пределах ТТК)': { price: 250, time: 30 },
-  'Москва (в пределах МКАД)': { price: 400, time: 50 },
-  'МО (в пределах ЦКАД)': { price: 800, time: 120 }
+  'Москва (в пределах ТТК)': { price: 150, time: 30 },
+  'Москва (в пределах МКАД)': { price: 200, time: 50 },
+  'МО (в пределах ЦКАД)': { price: 600, time: 120 }
 };
 
 // Обработчик формы доставки
@@ -391,7 +414,7 @@ document.querySelector('.adres').addEventListener('submit', function(e) {
   // Формируем результат
   let resultHTML = `
     <div class="delivery-result">
-      <p>Стоимость доставки с учётом выбранного плана питания на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
+      <p>Стоимость подписки с учётом выбранного плана питания и адреса на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
       <p>Доставка от ресторана займет примерно <strong>${delivery.time} минут</strong></p>
     </div>
   `;
