@@ -475,11 +475,11 @@ document.querySelector('.calculate-btn').addEventListener('click', function() {
 
   let calories = BMR * activityMultiplier;
 
-  if (goal === 'Похудение') {
-    calories -= 500; // дефицит
-  } else if (goal === 'Набор массы') {
-    calories += 500; // избыток
-  } 
+  if (goal === "Похудение") {
+    calories = 0.85*calories; // дефицит
+  } else if (goal === "Набор массы") {
+    calories = 1.15*calories; // избыток
+  }
 
   calories = Math.round(calories);
 
