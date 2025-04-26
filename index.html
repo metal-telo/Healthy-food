@@ -2037,7 +2037,7 @@ themeSwitcher.addEventListener('change', function() {
       ├ Адрес: ${formData.address}
       ├ Дата: ${formData.date}
       ├ Калорийность: ${formData.orderDetails.kcal} ккал
-      ${formData.orderDetails.duration ? `├ Продолжительность: ${formData.orderDetails.duration === 'trial' ? '2 дня' : formData.orderDetails.duration.includes('week') ? formData.orderDetails.duration.replace('week', '1 неделя').replace('twoWeeks', '2 недели').replace('threeWeeks', '3 недели').replace('fourWeeks', '4 недели') : ''}` : ''}
+      ${formData.orderDetails.duration ? `├ Продолжительность: ${getDurationText(formData.orderDetails.duration)}` : ''}
       └ Комментарий: ${formData.comment || 'нет'}
     `;
 
