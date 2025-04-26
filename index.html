@@ -1959,14 +1959,23 @@ themeSwitcher.addEventListener('change', function() {
   `;
   document.body.appendChild(orderModal);
 
+      function getDurationText(duration) {
+  switch(duration) {
+    case 'trial': return '2 дня';
+    case 'week': return '1 неделю';
+    case 'twoWeeks': return '2 недели';
+    case 'threeWeeks': return '3 недели';
+    case 'fourWeeks': return '4 недели';
+    default: return '';
+  }
+}
   // Функция для открытия модального окна
   function openOrderModal() {
     const currentKcal = calorieOptions[selectedCalorieOption].kcal;
     document.getElementById('orderSummary').innerHTML = `
       <h3>Ваш заказ</h3>
       <p><strong>Калорийность:</strong> ${currentKcal} ккал</p>
-      <p><strong>Меню на:</strong> ${selectedDay}</p>
-      ${selectedDuration ? `<p><strong>Продолжительность:</strong> ${selectedDuration === 'trial' ? '2 дня' : selectedDuration.includes('week') ? selectedDuration.replace('week', '1 неделя').replace('twoWeeks', '2 недели').replace('threeWeeks', '3 недели').replace('fourWeeks', '4 недели') : ''}</p>` : ''}
+      ${selectedDuration ? `<p><strong>Продолжительность:</strong> ${getDurationText(selectedDuration)}</p>` : ''}
     `;
     
     // Устанавливаем минимальную дану (завтра)
