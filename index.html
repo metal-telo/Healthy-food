@@ -72,20 +72,11 @@
           <div class="theme-switcher">
             <i class="fa fa-sun-o" aria-hidden="true"></i>
             <label class="switch btn-color-mode-switch">
-              <input
-                type="checkbox"
-                name="color_mode"
-                id="color_mode"
-                value="1"
-              />
-              <label
-                for="color_mode"
-                data-on="Dark"
-                data-off="Light"
-                class="btn-color-mode-switch-inner"
-              ></label>
+              <input type="checkbox" name="color_mode" id="burger_color_mode" value="1">
+              <label for="burger_color_mode" data-on="Dark" data-off="Light" class="btn-color-mode-switch-inner"></label>
             </label>
-            <i class="fa fa-moon-o" aria-hidden="true"></i>
+            <label style="opacity: 0%;"></label>
+            <i class="fa fa-moon-o" aria-hidden="true" style="margin-left:-3px ;"></i>
           </div>
         </div>
       </div>
@@ -1803,6 +1794,33 @@ const menuData = {
         container.appendChild(dishElement);
       });
     }
+
+    //синхронизация тем
+    // Синхронизация переключателей
+const mainThemeSwitcher = document.querySelector('header .btn-color-mode-switch input');
+const burgerThemeSwitcher = document.querySelector('.burger .btn-color-mode-switch input');
+
+function updateTheme(isDark) {
+  if (isDark) {
+    document.body.classList.add('dark-preview');
+    document.body.classList.remove('white-preview');
+  } else {
+    document.body.classList.add('white-preview');
+    document.body.classList.remove('dark-preview');
+  }
+  // Синхронизируем оба переключателя
+  mainThemeSwitcher.checked = isDark;
+  burgerThemeSwitcher.checked = isDark;
+}
+
+// Обработчики для обоих переключателей
+mainThemeSwitcher.addEventListener('change', function() {
+  updateTheme(this.checked);
+});
+
+burgerThemeSwitcher.addEventListener('change', function() {
+  updateTheme(this.checked);
+});
 
     // Обновление итоговых значений БЖУ
     function updateTotals() {
