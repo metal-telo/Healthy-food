@@ -16,6 +16,67 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <style>
+      /* Добавляем стили для модального окна заказа */
+      #orderModal {
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      #orderModal .modal-content {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+      }
+      #orderModal .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 28px;
+        cursor: pointer;
+      }
+      #orderForm .form-group {
+        margin-bottom: 15px;
+      }
+      #orderForm label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      #orderForm input, 
+      #orderForm textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      #orderForm textarea {
+        height: 100px;
+      }
+      #orderForm button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -1860,39 +1921,37 @@ themeSwitcher.addEventListener('change', function() {
 
 
  
-  const BOT_TOKEN = '7869118515:AAFObnkn_dpPOQ69p7ZJQ4-6Enr6hVxpgus'; 
-  const CHAT_ID = '780851073'; // Узнать у @userinfobot
+ const BOT_TOKEN = '7869118515:AAFObnkn_dpPOQ69p7ZJQ4-6Enr6hVxpgus'; 
+  const CHAT_ID = '780851073';
 
-  // Модальное окно оформления заказа
+  // Создаем модальное окно для заказа
   const orderModal = document.createElement('div');
   orderModal.id = 'orderModal';
-  orderModal.className = 'modal';
-  orderModal.style.display = 'none';
   orderModal.innerHTML = `
-    <div class="modal-content" style="max-width: 600px;">
+    <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Оформление заказа</h2>
       <div id="orderSummary"></div>
       <form id="orderForm">
         <div class="form-group">
           <label>Имя</label>
-          <input type="text" required placeholder="Ваше имя">
+          <input type="text" required placeholder="Ваше имя" id="orderName">
         </div>
         <div class="form-group">
           <label>Телефон</label>
-          <input type="tel" required placeholder="+7 (999) 123-45-67">
+          <input type="tel" required placeholder="+7 (999) 123-45-67" id="orderPhone">
         </div>
         <div class="form-group">
           <label>Адрес доставки</label>
-          <input type="text" required placeholder="Город, улица, дом, квартира">
+          <input type="text" required placeholder="Город, улица, дом, квартира" id="orderAddress">
         </div>
         <div class="form-group">
           <label>Дата начала доставки</label>
-          <input type="date" required>
+          <input type="date" required id="orderDate">
         </div>
         <div class="form-group">
           <label>Комментарий</label>
-          <textarea placeholder="Ваши пожелания"></textarea>
+          <textarea placeholder="Ваши пожелания" id="orderComment"></textarea>
         </div>
         <button type="submit" class="order-btn">Подтвердить заказ</button>
       </form>
@@ -1900,103 +1959,67 @@ themeSwitcher.addEventListener('change', function() {
   `;
   document.body.appendChild(orderModal);
 
-  // Стили для модального окна
-  const modalStyles = document.createElement('style');
-  modalStyles.textContent = `
-    #orderModal {
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #orderModal .modal-content {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    #orderModal .close {
-      float: right;
-      font-size: 28px;
-      cursor: pointer;
-    }
-    #orderForm .form-group {
-      margin-bottom: 15px;
-    }
-    #orderForm label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    #orderForm input, 
-    #orderForm textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    #orderForm textarea {
-      height: 100px;
-    }
-    #orderForm button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      width: 100%;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  `;
-  document.head.appendChild(modalStyles);
-
-  // Открытие модалки при клике на "Оформить заказ"
-  document.querySelector('.order-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    // Обновляем сводку заказа
+  // Функция для открытия модального окна
+  function openOrderModal() {
     const currentKcal = calorieOptions[selectedCalorieOption].kcal;
     document.getElementById('orderSummary').innerHTML = `
       <h3>Ваш заказ</h3>
       <p><strong>Калорийность:</strong> ${currentKcal} ккал</p>
       <p><strong>Меню на:</strong> ${selectedDay}</p>
+      ${selectedDuration ? `<p><strong>Продолжительность:</strong> ${selectedDuration === 'trial' ? '2 дня' : selectedDuration.includes('week') ? selectedDuration.replace('week', '1 неделя').replace('twoWeeks', '2 недели').replace('threeWeeks', '3 недели').replace('fourWeeks', '4 недели') : ''}</p>` : ''}
     `;
     
+    // Устанавливаем минимальную дану (завтра)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById('orderDate').min = tomorrow.toISOString().split('T')[0];
+    
     orderModal.style.display = 'flex';
-  });
+  }
 
-  // Закрытие модалки
-  orderModal.querySelector('.close').addEventListener('click', function() {
+  // Функция для закрытия модального окна
+  function closeOrderModal() {
     orderModal.style.display = 'none';
+  }
+
+  // Обработчик для кнопки "Оформить заказ"
+  document.querySelector('.order-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    openOrderModal();
   });
 
-  // Обработка отправки формы
+  // Обработчик для закрытия модального окна
+  orderModal.querySelector('.close').addEventListener('click', closeOrderModal);
+
+  // Обработчик для клика вне модального окна
+  window.addEventListener('click', function(event) {
+    if (event.target === orderModal) {
+      closeOrderModal();
+    }
+  });
+
+  // Обработчик отправки формы
   document.getElementById('orderForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const formData = {
-      name: this.querySelector('input[type="text"]').value,
-      phone: this.querySelector('input[type="tel"]').value,
-      address: this.querySelector('input[placeholder*="адрес"]').value,
-      date: this.querySelector('input[type="date"]').value,
-      comment: this.querySelector('textarea').value,
+      name: document.getElementById('orderName').value,
+      phone: document.getElementById('orderPhone').value,
+      address: document.getElementById('orderAddress').value,
+      date: document.getElementById('orderDate').value,
+      comment: document.getElementById('orderComment').value,
       orderDetails: {
         kcal: calorieOptions[selectedCalorieOption].kcal,
         day: selectedDay,
         duration: selectedDuration
       }
     };
+
+    // Проверка заполнения обязательных полей
+    if (!formData.name || !formData.phone || !formData.address || !formData.date) {
+      alert('Пожалуйста, заполните все обязательные поля');
+      return;
+    }
 
     // Формируем сообщение для Telegram
     const message = `
@@ -2007,6 +2030,7 @@ themeSwitcher.addEventListener('change', function() {
       ├ Дата: ${formData.date}
       ├ Калорийность: ${formData.orderDetails.kcal} ккал
       ├ Меню на: ${formData.orderDetails.day}
+      ${formData.orderDetails.duration ? `├ Продолжительность: ${formData.orderDetails.duration === 'trial' ? '2 дня' : formData.orderDetails.duration.includes('week') ? formData.orderDetails.duration.replace('week', '1 неделя').replace('twoWeeks', '2 недели').replace('threeWeeks', '3 недели').replace('fourWeeks', '4 недели') : ''}` : ''}
       └ Комментарий: ${formData.comment || 'нет'}
     `;
 
@@ -2022,26 +2046,20 @@ themeSwitcher.addEventListener('change', function() {
         })
       });
 
+      const data = await response.json();
+      
       if (response.ok) {
         alert('✅ Заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
-        orderModal.style.display = 'none';
+        closeOrderModal();
         this.reset();
       } else {
-        throw new Error('Ошибка отправки');
+        throw new Error(data.description || 'Ошибка отправки');
       }
     } catch (error) {
       console.error('Ошибка:', error);
-      alert('⚠️ Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+      alert(`⚠️ Произошла ошибка при отправке: ${error.message}. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.`);
     }
   });
-
-  // Закрытие при клике вне модалки
-  window.addEventListener('click', function(event) {
-    if (event.target === orderModal) {
-      orderModal.style.display = 'none';
-    }
-  });
-
   </script>
 </body>
 </html>
