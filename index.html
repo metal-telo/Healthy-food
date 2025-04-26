@@ -17,65 +17,112 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <style>
-      /* Добавляем стили для модального окна заказа */
       #orderModal {
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-      }
-      #orderModal .modal-content {
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 500px;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-      }
-      #orderModal .close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 28px;
-        cursor: pointer;
-      }
-      #orderForm .form-group {
-        margin-bottom: 15px;
-      }
-      #orderForm label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-      }
-      #orderForm input, 
-      #orderForm textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-sizing: border-box;
-      }
-      #orderForm textarea {
-        height: 100px;
-      }
-      #orderForm button {
-        background: #4CAF50;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        width: 100%;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-      }
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  #orderModal .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  #orderModal .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s;
+  }
+  #orderModal .close:hover {
+    color: #000;
+  }
+  #orderModal h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  #orderModal h3 {
+    margin-top: 0;
+    color: #4CAF50;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  #orderForm .form-group {
+    margin-bottom: 20px;
+  }
+  #orderForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+  }
+  #orderForm input, 
+  #orderForm textarea,
+  #orderForm select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: border 0.3s;
+  }
+  #orderForm input:focus, 
+  #orderForm textarea:focus,
+  #orderForm select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  #orderForm textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  #orderForm button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.3s;
+    margin-top: 10px;
+  }
+  #orderForm button:hover {
+    background: #45a049;
+  }
+  #orderSummary {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  #orderSummary p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
     </style>
   </head>
   <body>
@@ -1921,7 +1968,8 @@ themeSwitcher.addEventListener('change', function() {
 
 
  
- const BOT_TOKEN = '7869118515:AAFObnkn_dpPOQ69p7ZJQ4-6Enr6hVxpgus'; 
+ // Telegram бот
+  const BOT_TOKEN = '7869118515:AAFObnkn_dpPOQ69p7ZJQ4-6Enr6hVxpgus'; 
   const CHAT_ID = '7869118515';
 
   // Создаем модальное окно для заказа
@@ -1965,7 +2013,6 @@ themeSwitcher.addEventListener('change', function() {
     document.getElementById('orderSummary').innerHTML = `
       <h3>Ваш заказ</h3>
       <p><strong>Калорийность:</strong> ${currentKcal} ккал</p>
-      <p><strong>Меню на:</strong> ${selectedDay}</p>
       ${selectedDuration ? `<p><strong>Продолжительность:</strong> ${selectedDuration === 'trial' ? '2 дня' : selectedDuration.includes('week') ? selectedDuration.replace('week', '1 неделя').replace('twoWeeks', '2 недели').replace('threeWeeks', '3 недели').replace('fourWeeks', '4 недели') : ''}</p>` : ''}
     `;
     
@@ -2010,7 +2057,6 @@ themeSwitcher.addEventListener('change', function() {
       comment: document.getElementById('orderComment').value,
       orderDetails: {
         kcal: calorieOptions[selectedCalorieOption].kcal,
-        day: selectedDay,
         duration: selectedDuration
       }
     };
@@ -2029,7 +2075,6 @@ themeSwitcher.addEventListener('change', function() {
       ├ Адрес: ${formData.address}
       ├ Дата: ${formData.date}
       ├ Калорийность: ${formData.orderDetails.kcal} ккал
-      ├ Меню на: ${formData.orderDetails.day}
       ${formData.orderDetails.duration ? `├ Продолжительность: ${formData.orderDetails.duration === 'trial' ? '2 дня' : formData.orderDetails.duration.includes('week') ? formData.orderDetails.duration.replace('week', '1 неделя').replace('twoWeeks', '2 недели').replace('threeWeeks', '3 недели').replace('fourWeeks', '4 недели') : ''}` : ''}
       └ Комментарий: ${formData.comment || 'нет'}
     `;
