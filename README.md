@@ -2,7 +2,7 @@
   <h1>🥗 Пора поесть - сервис доставки здорового питания</h1>
   <h3>Репозиторий группы для олимпиады | Тема 3 "FreshMarket"</h3>
   
-   [![Demo](https://img.shields.io/badge/ПОСМОТРЕТЬ_САЙТ-64D370?style=for-the-badge&logoColor=white&color=64D370&labelColor=64D370&logo=rocket)](https://metal-telo.github.io/Healthy-food/)
+   [![Demo](https://img.shields.io/badge/ПОСМОТРЕТЬ_САЙТ-64D370?style=for-the-badge&logoColor=white&color=64D370&labelColor=64D370&logo=rocket)](https://metal-telo.github.io/Site-Pora-poest-/)
   &nbsp;
   [![Figma](https://img.shields.io/badge/FIGMA_МАКЕТ-64D370?style=for-the-badge&logoColor=white&color=64D370&labelColor=64D370&logo=figma)](https://www.figma.com/design/evOxCfoB6sAEwJIiAsfHf4/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B4%D0%BB%D1%8F-%D0%BE%D0%BB%D0%B8%D0%BC%D0%BF%D0%B8%D0%B0%D0%B4%D1%8B?node-id=51-2&t=lJFGelht1yGE4K15-1)
 </div>
