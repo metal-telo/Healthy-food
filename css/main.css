@@ -404,6 +404,22 @@ strong {
 
 /*выбор меню*/
 
+.form-g textarea,
+.form-g input,
+.form-g input::placeholder,
+.form-g input[type="date"],
+.form-g textarea::placeholder {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.form-g input,
+.form-g textarea {
+  color: #000;
+}
+
 #menu .green {
   margin-bottom: 0.5%;
 }
@@ -803,12 +819,11 @@ strong {
   border-color: #444;
 }
 
-
 .dark-preview .gender-selection .btn-color-mode-switch-inner:before {
   color: #ffffff;
 }
 
-.dark-preview .new-price{
+.dark-preview .new-price {
   color: white;
 }
 
@@ -822,7 +837,7 @@ strong {
   border-color: #555 !important; /* Граница переключателя */
 }
 
-.dark-preview .men{
+.dark-preview .men {
   background-color: #151515;
 }
 
@@ -860,7 +875,7 @@ strong {
   box-shadow: 2px 2px 10px rgba(100, 211, 112, 0.5); /* Тень с зеленым оттенком */
 }
 
-.dark-preview .total-item img{
+.dark-preview .total-item img {
   filter: invert(1);
 }
 
@@ -880,6 +895,7 @@ strong {
 .form-group {
   margin-bottom: 0;
   flex: 0 1 auto;
+  width: 100%;
 }
 
 .form-input,

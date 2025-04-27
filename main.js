@@ -51,11 +51,11 @@ document.querySelector(".adres").addEventListener("submit", function (e) {
 
   // Формируем результат
   let resultHTML = `
-      <div class="delivery-result">
-        <p>Стоимость подписки с учётом выбранного плана питания и адреса на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
-        <p>Доставка от ресторана займет примерно <strong>${delivery.time} минут</strong></p>
-      </div>
-    `;
+    <div class="delivery-result">
+      <p>Стоимость подписки с учётом выбранного плана питания и адреса на ${durationText} составит <strong>${totalPrice}₽/день</strong></p>
+      <p>Доставка от ресторана займет примерно <strong>${delivery.time} минут</strong></p>
+    </div>
+  `;
 
   // Отображаем результат - можно добавить перед кнопкой "Рассчитать"
   const existingResult = document.querySelector(".delivery-result");
@@ -73,10 +73,10 @@ document.querySelector(".adres").addEventListener("submit", function (e) {
 // Добавляем стили для отображения результата
 const style = document.createElement("style");
 style.textContent = `
-    .delivery-result {
-      flex-direction: column;
-    }
-  `;
+  .delivery-result {
+    flex-direction: column;
+  }
+`;
 document.head.appendChild(style);
 // BMR
 function calculateBMR(weight, height, age, gender) {
@@ -122,9 +122,9 @@ document.querySelector(".calculate-btn").addEventListener("click", function () {
   let calories = BMR * activityMultiplier;
 
   if (goal === "Похудение") {
-    calories = 0.9 * calories; // дефицит
+    calories = 0.85 * calories; // дефицит
   } else if (goal === "Набор массы") {
-    calories = 1.1 * calories; // избыток
+    calories = 1.15 * calories; // избыток
   }
 
   calories = Math.round(calories);
@@ -1437,8 +1437,8 @@ function renderCalorieOptions() {
       index === selectedCalorieOption ? "selected" : ""
     }`;
     optionElement.innerHTML = `
-                    <div class="kcal">${option.kcal} ккал</div>
-                `;
+                  <div class="kcal">${option.kcal} ккал</div>
+              `;
 
     optionElement.addEventListener("click", () => {
       selectedCalorieOption = index;
@@ -1466,12 +1466,12 @@ function renderDurationOptions() {
     selectedDuration === "trial" ? "selected" : ""
   }`;
   trialOption.innerHTML = `
-        <div class="kcal">Пробные 2 дня</div>
-        <div class="dishes">
-            <span class="new-price">${prices.trial} ₽</span>
-            <span class="old-price">${prices.trial + 200} ₽</span>
-        </div>
-    `;
+      <div class="kcal">Пробные 2 дня</div>
+      <div class="dishes">
+          <span class="new-price">${prices.trial} ₽</span>
+          <span class="old-price">${prices.trial + 200} ₽</span>
+      </div>
+  `;
 
   trialOption.addEventListener("click", () => {
     selectedDuration = "trial";
@@ -1494,11 +1494,11 @@ function renderDurationOptions() {
       selectedDuration === duration.key ? "selected" : ""
     }`;
     option.innerHTML = `
-            <div class="kcal">${duration.name}</div>
-            <div class="dishes">
-                <span class="new-price">${prices[duration.key]} ₽/день</span>
-            </div>
-        `;
+          <div class="kcal">${duration.name}</div>
+          <div class="dishes">
+              <span class="new-price">${prices[duration.key]} ₽/день</span>
+          </div>
+      `;
 
     option.addEventListener("click", () => {
       selectedDuration = duration.key;
@@ -1546,22 +1546,53 @@ function renderMenu() {
     const dishElement = document.createElement("div");
     dishElement.className = "dish-card";
     dishElement.innerHTML = `
-                    <img src="${dish.image}" alt="${dish.name}" class="dish-image">
-                    <div class="dish-info">
-                        <div class="dish-title">${dish.name}</div>
-                        <div class="dish-details">
-                            <div class="dish-detail">К: ${dish.kcal} ккал</div>
-                            <div class="dish-detail">Б: ${dish.protein} г</div>
-                            <div class="dish-detail">Ж: ${dish.fat} г</div>
-                            <div class="dish-detail">У: ${dish.carbs} г</div>
-                            <div class="dish-detail">Вес: ${dish.weight}г</div>
-                        </div>
-                    </div>
-                `;
+                  <img src="${dish.image}" alt="${dish.name}" class="dish-image">
+                  <div class="dish-info">
+                      <div class="dish-title">${dish.name}</div>
+                      <div class="dish-details">
+                          <div class="dish-detail">К: ${dish.kcal} ккал</div>
+                          <div class="dish-detail">Б: ${dish.protein} г</div>
+                          <div class="dish-detail">Ж: ${dish.fat} г</div>
+                          <div class="dish-detail">У: ${dish.carbs} г</div>
+                          <div class="dish-detail">Вес: ${dish.weight}г</div>
+                      </div>
+                  </div>
+              `;
 
     container.appendChild(dishElement);
   });
 }
+
+//синхронизация тем
+// Синхронизация переключателей
+const mainThemeSwitcher = document.querySelector(
+  "header .btn-color-mode-switch input"
+);
+const burgerThemeSwitcher = document.querySelector(
+  ".burger .btn-color-mode-switch input"
+);
+
+function updateTheme(isDark) {
+  if (isDark) {
+    document.body.classList.add("dark-preview");
+    document.body.classList.remove("white-preview");
+  } else {
+    document.body.classList.add("white-preview");
+    document.body.classList.remove("dark-preview");
+  }
+  // Синхронизируем оба переключателя
+  mainThemeSwitcher.checked = isDark;
+  burgerThemeSwitcher.checked = isDark;
+}
+
+// Обработчики для обоих переключателей
+mainThemeSwitcher.addEventListener("change", function () {
+  updateTheme(this.checked);
+});
+
+burgerThemeSwitcher.addEventListener("change", function () {
+  updateTheme(this.checked);
+});
 
 // Обновление итоговых значений БЖУ
 function updateTotals() {
@@ -1592,3 +1623,204 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+const BOT_TOKEN = "7869118515:AAFObnkn_dpPOQ69p7ZJQ4-6Enr6hVxpgus";
+const CHAT_ID = "780851073";
+
+// Создаем модальное окно для заказа
+const orderModal = document.createElement("div");
+orderModal.id = "orderModal";
+orderModal.innerHTML = `
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Оформление заказа</h2>
+      <div id="orderSummary"></div>
+      <form id="orderForm">
+        <div class="form-g">
+          <label>Имя</label>
+          <input type="text" required placeholder="Ваше имя" id="orderName">
+        </div>
+        <div class="form-g">
+          <label>Телефон</label>
+          <input type="tel" required placeholder="+7 (999) 123-45-67" id="orderPhone">
+        </div>
+        <div class="form-g">
+          <label>Адрес доставки</label>
+          <input type="text" required placeholder="Город, улица, дом, квартира" id="orderAddress">
+        </div>
+        <div class="form-g">
+          <label>Дата начала доставки</label>
+          <input type="date" required id="orderDate">
+        </div>
+        <div class="form-g">
+          <label>Комментарий</label>
+          <textarea placeholder="Ваши пожелания" id="orderComment"></textarea>
+        </div>
+        <button type="submit" class="order-btn">Подтвердить заказ</button>
+      </form>
+    </div>
+  `;
+document.body.appendChild(orderModal);
+
+function getDurationText(duration) {
+  switch (duration) {
+    case "trial":
+      return "2 дня";
+    case "week":
+      return "1 неделю";
+    case "twoWeeks":
+      return "2 недели";
+    case "threeWeeks":
+      return "3 недели";
+    case "fourWeeks":
+      return "4 недели";
+    default:
+      return "";
+  }
+}
+// Функция для открытия модального окна
+function openOrderModal() {
+  const currentKcal = calorieOptions[selectedCalorieOption].kcal;
+  const prices = priceOptions[currentKcal];
+  let priceText = "";
+
+  if (selectedDuration === "trial") {
+    priceText = `${prices.trial} ₽`;
+  } else {
+    const durationPrices = {
+      week: prices.week,
+      twoWeeks: prices.twoWeeks,
+      threeWeeks: prices.threeWeeks,
+      fourWeeks: prices.fourWeeks,
+    };
+    priceText = `${durationPrices[selectedDuration]} ₽/день`;
+  }
+
+  document.getElementById("orderSummary").innerHTML = `
+    <h3>Ваш заказ</h3>
+    <p><strong>Калорийность:</strong> ${currentKcal} ккал</p>
+    <p><strong>Продолжительность:</strong> ${getDurationText(
+      selectedDuration
+    )}</p>
+    <p><strong>Стоимость:</strong> ${priceText}</p>
+  `;
+
+  // Устанавливаем минимальную дану (завтра)
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  document.getElementById("orderDate").min = tomorrow
+    .toISOString()
+    .split("T")[0];
+
+  orderModal.style.display = "flex";
+}
+
+// Функция для закрытия модального окна
+function closeOrderModal() {
+  orderModal.style.display = "none";
+}
+
+// Обработчик для кнопки "Оформить заказ"
+// Обработчик для кнопки "Оформить заказ"
+document.querySelector(".order-btn").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // Проверяем, выбрана ли продолжительность
+  if (!selectedDuration) {
+    alert("Пожалуйста, сначала выберите продолжительность подписки");
+    return;
+  }
+
+  openOrderModal();
+});
+
+// Обработчик для закрытия модального окна
+orderModal.querySelector(".close").addEventListener("click", closeOrderModal);
+
+// Обработчик для клика вне модального окна
+window.addEventListener("click", function (event) {
+  if (event.target === orderModal) {
+    closeOrderModal();
+  }
+});
+
+// Обработчик отправки формы
+document
+  .getElementById("orderForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById("orderName").value,
+      phone: document.getElementById("orderPhone").value,
+      address: document.getElementById("orderAddress").value,
+      date: document.getElementById("orderDate").value,
+      comment: document.getElementById("orderComment").value,
+      orderDetails: {
+        kcal: calorieOptions[selectedCalorieOption].kcal,
+        duration: selectedDuration,
+      },
+    };
+
+    // Проверка заполнения обязательных полей
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.address ||
+      !formData.date
+    ) {
+      alert("Пожалуйста, заполните все обязательные поля");
+      return;
+    }
+
+    // Формируем сообщение для Telegram
+    const message = `
+      🍏 <b>Новый заказ!</b>
+      ├ Имя: <b>${formData.name}</b>
+      ├ Телефон: <code>${formData.phone}</code>
+      ├ Адрес: ${formData.address}
+      ├ Дата: ${formData.date}
+      ├ Калорийность: ${formData.orderDetails.kcal} ккал
+      ${
+        formData.orderDetails.duration
+          ? `├ Продолжительность: ${getDurationText(
+              formData.orderDetails.duration
+            )}`
+          : ""
+      }
+      └ Комментарий: ${formData.comment || "нет"}
+    `;
+
+    try {
+      // Отправляем в Telegram
+      const response = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(
+          "✅ Заказ успешно отправлен! Мы свяжемся с вами в ближайшее время."
+        );
+        closeOrderModal();
+        this.reset();
+      } else {
+        throw new Error(data.description || "Ошибка отправки");
+      }
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert(
+        `⚠️ Произошла ошибка при отправке: ${error.message}. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.`
+      );
+    }
+  });
