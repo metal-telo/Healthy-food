@@ -420,6 +420,17 @@ strong {
   color: #000;
 }
 
+.dark-preview input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  padding: 4px;
+  cursor: pointer;
+}
+
+.dark-preview .form-g input::placeholder , .form-g textarea::placeholder, .form-g textarea,
+.form-g input {
+  color: #fff;
+}
+
 #menu .green {
   margin-bottom: 0.5%;
 }
